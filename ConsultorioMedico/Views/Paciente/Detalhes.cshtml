@@ -1,0 +1,19 @@
+﻿@model ConsultorioMedico.Models.Paciente
+@{
+    ViewBag.Title = "Detalhes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="espacamento">
+</div>
+
+<div class="row">
+    <div class="col col-md-6 col-md-offset-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">Informações do paciente</div>
+            <div class="panel-body">
+                @Model.Nome
+            </div>
+        </div>
+    </div>
+</div>

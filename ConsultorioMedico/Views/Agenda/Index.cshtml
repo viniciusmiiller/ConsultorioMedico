@@ -1,0 +1,38 @@
+﻿@model ConsultorioMedico.ViewModels.AgendaIndexViewModel
+@{
+    ViewBag.Title = "Agenda";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col col-md-6 col-md-offset-3">
+        <h2>Agendas</h2>
+
+        @if (Model.Agendas.Count > 0)
+        {
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Dia</th>
+                        <th>Profissional</th>
+                        <th>Vagas</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var agenda in Model.Agendas)
+                    {
+                        <tr>
+                            <td>@Html.ActionLink(@agenda.DiaSemana, "Detalhes", new { agenda.Id })</td>
+                            <td>@Html.ActionLink(@agenda.Profissional, "Detalhes", new { agenda.Id })</td>
+                            <td>@Html.ActionLink(@agenda.Vagas.ToString(), "Detalhes", new { agenda.Id })</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>Não há pacientes cadastrados ainda.</p>
+        }
+    </div>
+</div>

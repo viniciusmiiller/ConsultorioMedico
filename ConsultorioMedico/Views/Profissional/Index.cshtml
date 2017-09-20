@@ -1,0 +1,30 @@
+﻿@model ConsultorioMedico.ViewModels.ProfissionalIndexViewModel
+@{
+    ViewBag.Title = "Profissional";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col col-md-6 col-md-offset-3">
+        <h2>Profissionais</h2>
+
+        @if (Model.Profissionais.Count > 0)
+        {
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr><th>Profissional</th></tr>
+                </thead>
+                <tbody>
+                    @foreach (var profissional in Model.Profissionais)
+                    {
+                        <tr><td>@Html.ActionLink(@profissional.Nome, "Detalhes", new { profissional.Id })</td></tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>Não há profissionais cadastrados ainda.</p>
+        }
+    </div>
+</div>

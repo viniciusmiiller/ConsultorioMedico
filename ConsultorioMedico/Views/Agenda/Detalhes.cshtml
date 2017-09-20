@@ -1,0 +1,21 @@
+﻿@model ConsultorioMedico.Models.Agenda
+@{
+    ViewBag.Title = "Detalhes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="espacamento">
+</div>
+
+<div class="row">
+    <div class="col col-md-6 col-md-offset-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">Informações da agenda</div>
+            <div class="panel-body">
+                Dia da agenda: @Model.DiaSemana <br>
+                Profissional: @Model.Profissional <br> 
+                Vagas disponíveis: @Model.Vagas
+            </div>
+        </div>
+    </div>
+</div>

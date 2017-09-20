@@ -1,0 +1,30 @@
+﻿@model ConsultorioMedico.ViewModels.PacienteIndexViewModel
+@{
+    ViewBag.Title = "Paciente";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col col-md-6 col-md-offset-3">
+        <h2>Pacientes</h2>
+
+        @if (Model.Pacientes.Count > 0)
+        {
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr><th>Paciente</th></tr>
+                </thead>
+                <tbody>
+                    @foreach (var paciente in Model.Pacientes)
+                    {
+                        <tr><td>@Html.ActionLink(@paciente.Nome, "Detalhes", new { paciente.Id })</td></tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>Não há pacientes cadastrados ainda.</p>
+        }
+    </div>
+</div>
