@@ -20,6 +20,11 @@ namespace ConsultorioMedico.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet <Agenda> Agendas { get; set; }
+        public DbSet<Paciente> Pacientes { get; set; }
+        public DbSet<Profissional> Profissionais { get; set; }
+        public DbSet<Unidade> Unidades { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

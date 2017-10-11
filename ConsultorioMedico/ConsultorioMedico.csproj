@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -205,6 +206,35 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710102214266_InitialModel.cs" />
+    <Compile Include="Migrations\201710102214266_InitialModel.Designer.cs">
+      <DependentUpon>201710102214266_InitialModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710102219378_Populacao.cs" />
+    <Compile Include="Migrations\201710102219378_Populacao.Designer.cs">
+      <DependentUpon>201710102219378_Populacao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710102234263_PopulacaoProfissional.cs" />
+    <Compile Include="Migrations\201710102234263_PopulacaoProfissional.Designer.cs">
+      <DependentUpon>201710102234263_PopulacaoProfissional.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710102243230_PopulacaoUnidade.cs" />
+    <Compile Include="Migrations\201710102243230_PopulacaoUnidade.Designer.cs">
+      <DependentUpon>201710102243230_PopulacaoUnidade.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710102245020_PopulacaoUnidadeCerto.cs" />
+    <Compile Include="Migrations\201710102245020_PopulacaoUnidadeCerto.Designer.cs">
+      <DependentUpon>201710102245020_PopulacaoUnidadeCerto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710102257460_CorrigindoModelAgenda.cs" />
+    <Compile Include="Migrations\201710102257460_CorrigindoModelAgenda.Designer.cs">
+      <DependentUpon>201710102257460_CorrigindoModelAgenda.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710102300194_PopulandoAgenda.cs" />
+    <Compile Include="Migrations\201710102300194_PopulandoAgenda.Designer.cs">
+      <DependentUpon>201710102300194_PopulandoAgenda.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Agenda.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -295,6 +325,29 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201710102214266_InitialModel.resx">
+      <DependentUpon>201710102214266_InitialModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710102219378_Populacao.resx">
+      <DependentUpon>201710102219378_Populacao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710102234263_PopulacaoProfissional.resx">
+      <DependentUpon>201710102234263_PopulacaoProfissional.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710102243230_PopulacaoUnidade.resx">
+      <DependentUpon>201710102243230_PopulacaoUnidade.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710102245020_PopulacaoUnidadeCerto.resx">
+      <DependentUpon>201710102245020_PopulacaoUnidadeCerto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710102257460_CorrigindoModelAgenda.resx">
+      <DependentUpon>201710102257460_CorrigindoModelAgenda.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710102300194_PopulandoAgenda.resx">
+      <DependentUpon>201710102300194_PopulandoAgenda.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

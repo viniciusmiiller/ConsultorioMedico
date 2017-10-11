@@ -10,32 +10,35 @@ namespace ConsultorioMedico.Controllers
 {
     public class ProfissionalController : Controller
     {
-        public List<Profissional> Profissionais = new List<Profissional>
+        private ApplicationDbContext _context;
+
+        public ProfissionalController()
         {
-            new Profissional {Nome = "Maria Luiza", Id = 1},
-            new Profissional {Nome = "Vinícius Miiller", Id = 2}
-        };
+            _context = new ApplicationDbContext();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
 
         // GET: Profissional
         public ActionResult Index()
         {
-            var viewModel = new ProfissionalIndexViewModel
-            {
-                Profissionais = Profissionais
-            };
-            return View(viewModel);
+            var profissional = _context.Profissionais.ToList();
+            return View(profissional);
         }
 
         public ActionResult Detalhes(int id)
         {
-            if (Profissionais.Count < id)
+            foreach (var profissional in _context.Profissionais.ToList())
             {
-                return HttpNotFound();
+                if (profissional.Id == id)
+                {
+                    return View(profissional);
+                }
             }
-
-            var profissional = Profissionais[id - 1];
-
-            return View(profissional);
+            return HttpNotFound();
         }
     }
 }

@@ -5,37 +5,45 @@ using System.Web;
 using System.Web.Mvc;
 using ConsultorioMedico.Models;
 using ConsultorioMedico.ViewModels;
+using System.Data.Entity;
 
 namespace ConsultorioMedico.Controllers
 {
     public class AgendaController : Controller
     {
+        private ApplicationDbContext _context;
+
+        public AgendaController()
+        {
+            _context = new ApplicationDbContext();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
+
         public List<Agenda> Agendas = new List<Agenda>
         {
-            new Agenda {DiaSemana = "Segunda", Id = 1, Vagas = 5, Profissional = "Vinícius Miiller"},
-            new Agenda {DiaSemana = "Sexta", Id = 2, Vagas = 4, Profissional = "Maria Luiza"}
         };
 
         // GET: Agenda
         public ActionResult Index()
         {
-            var viewModel = new AgendaIndexViewModel
-            {
-                Agendas = Agendas
-            };
-            return View(viewModel);
+            var agenda = _context.Agendas.Include(a => a.Profissional);
+            return View(agenda);
         }
 
         public ActionResult Detalhes(int id)
         {
-            if (Agendas.Count < id)
+            foreach (var agenda in _context.Agendas.ToList())
             {
-                return HttpNotFound();
+                if (agenda.Id == id)
+                {
+                    return View(agenda);
+                }
             }
-
-            var agenda = Agendas[id - 1];
-
-            return View(agenda);
+            return HttpNotFound();
         }
     }
 }

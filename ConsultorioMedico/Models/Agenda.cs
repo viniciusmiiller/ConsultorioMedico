@@ -10,6 +10,6 @@ namespace ConsultorioMedico.Models
         public int Id { get; set; }
         public String DiaSemana { get; set; }
         public int Vagas { get; set; }
-        public String Profissional { get; set; }
+        public Profissional Profissional { get; set; }
     }
 }

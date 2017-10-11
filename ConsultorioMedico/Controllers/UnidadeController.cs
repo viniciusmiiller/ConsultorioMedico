@@ -10,32 +10,35 @@ namespace ConsultorioMedico.Controllers
 {
     public class UnidadeController : Controller
     {
-        public List<Unidade> Unidades = new List<Unidade>
+        private ApplicationDbContext _context;
+
+        public UnidadeController()
         {
-            new Unidade {Id = 1, Nome = "Unidade de Medida"},
-            new Unidade {Id = 2, Nome = "U.B.S Amizade"}
-        };
+            _context = new ApplicationDbContext();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
 
         // GET: Unidade
         public ActionResult Index()
         {
-            var viewModel = new UnidadeIndexViewModel
-            {
-                Unidades = Unidades
-            };
-            return View(viewModel);
+            var unidade = _context.Unidades.ToList();
+            return View(unidade);
         }
 
         public ActionResult Detalhes(int id)
         {
-            if (Unidades.Count < id)
+            foreach (var unidade in _context.Unidades.ToList())
             {
-                return HttpNotFound();
+                if (unidade.Id == id)
+                {
+                    return View(unidade);
+                }
             }
-
-            var unidade = Unidades[id - 1];
-
-            return View(unidade);
+            return HttpNotFound();
         }
     }
 }
