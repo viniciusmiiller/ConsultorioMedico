@@ -31,14 +31,64 @@ namespace ConsultorioMedico.Controllers
 
         public ActionResult Detalhes(int id)
         {
-            foreach (var paciente in _context.Pacientes.ToList())
+            var paciente = _context.Pacientes.SingleOrDefault(c => c.Id == id);
+            if (paciente == null)
+                return HttpNotFound();
+
+            return View(paciente);
+        }
+
+        public ActionResult New()
+        {
+
+            var viewModel = new PacienteFormViewModel()
             {
-                if (paciente.Id == id)
+                Paciente = new Paciente()
+            };
+
+            return View("PacienteForm", viewModel);
+        }
+
+        [HttpPost] // só será acessada com POST
+        public ActionResult Save(Paciente paciente) // recebemos um cliente
+        {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new PacienteFormViewModel
                 {
-                    return View(paciente);
-                }
+                    Paciente = paciente,
+                };
+
+                return View("PacienteForm", viewModel);
             }
-            return HttpNotFound();
+
+            if (paciente.Id == 0)
+                _context.Pacientes.Add(paciente);
+            else
+            {
+                var pacienteInDb = _context.Pacientes.Single(c => c.Id == paciente.Id);
+
+                pacienteInDb.Nome = paciente.Nome;
+                pacienteInDb.IsSub = paciente.IsSub;
+            }
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Paciente");
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var paciente = _context.Pacientes.SingleOrDefault(c => c.Id == id);
+
+            if (paciente == null)
+                return HttpNotFound();
+
+            var viewModel = new PacienteFormViewModel
+            {
+                Paciente = paciente
+            };
+
+            return View("PacienteForm", viewModel);
         }
     }
 }

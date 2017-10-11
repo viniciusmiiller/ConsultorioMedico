@@ -234,6 +234,10 @@
     <Compile Include="Migrations\201710102300194_PopulandoAgenda.Designer.cs">
       <DependentUpon>201710102300194_PopulandoAgenda.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710110030199_AdicionandoPacienteIsSub.cs" />
+    <Compile Include="Migrations\201710110030199_AdicionandoPacienteIsSub.Designer.cs">
+      <DependentUpon>201710110030199_AdicionandoPacienteIsSub.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Agenda.cs" />
@@ -245,7 +249,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AgendaIndexViewModel.cs" />
-    <Compile Include="ViewModels\PacienteIndexViewModel.cs" />
+    <Compile Include="ViewModels\PacienteFormViewModel.cs" />
     <Compile Include="ViewModels\ProfissionalIndexViewModel.cs" />
     <Compile Include="ViewModels\UnidadeIndexViewModel.cs" />
   </ItemGroup>
@@ -310,11 +314,11 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Paciente\PacienteForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Agenda\" />
-    <Folder Include="Views\Paciente\" />
     <Folder Include="Views\Profissional\" />
     <Folder Include="Views\Unidade\" />
   </ItemGroup>
@@ -347,6 +351,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710102300194_PopulandoAgenda.resx">
       <DependentUpon>201710102300194_PopulandoAgenda.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710110030199_AdicionandoPacienteIsSub.resx">
+      <DependentUpon>201710110030199_AdicionandoPacienteIsSub.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

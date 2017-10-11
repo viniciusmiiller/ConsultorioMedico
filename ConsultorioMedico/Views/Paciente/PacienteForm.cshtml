@@ -1,0 +1,29 @@
+﻿@model ConsultorioMedico.ViewModels.PacienteFormViewModel
+@{
+    ViewBag.Title = Model.Title;
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Save", "Paciente"))
+{
+    @Html.ValidationSummary(true, "Please fix the following errors.")
+    <div class="form-group">
+        @Html.LabelFor(m => m.Paciente.Nome)
+        @Html.TextBoxFor(m => m.Paciente.Nome, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Paciente.Nome)
+    </div>
+    <div class="checkbox">
+        <label>
+            @Html.CheckBoxFor(m => m.Paciente.IsSub) Assinar a NewsLetter
+        </label>
+    </div>
+
+    @Html.HiddenFor(m => m.Paciente.Id)
+    <button type="submit" class="btn btn-primary">Salvar</button>
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
