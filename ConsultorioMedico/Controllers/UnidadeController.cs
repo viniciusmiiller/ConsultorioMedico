@@ -40,5 +40,57 @@ namespace ConsultorioMedico.Controllers
             }
             return HttpNotFound();
         }
+
+        public ActionResult New()
+        {
+
+            var viewModel = new UnidadeFormViewModel()
+            {
+                Unidade = new Unidade()
+            };
+
+            return View("UnidadeForm", viewModel);
+        }
+
+        [HttpPost] // só será acessada com POST
+        public ActionResult Save(Unidade unidade) // recebemos um cliente
+        {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new UnidadeFormViewModel
+                {
+                    Unidade = unidade,
+                };
+
+                return View("UnidadeForm", viewModel);
+            }
+
+            if (unidade.Id == 0)
+                _context.Unidades.Add(unidade);
+            else
+            {
+                var pacienteInDb = _context.Unidades.Single(c => c.Id == unidade.Id);
+
+                pacienteInDb.Nome = unidade.Nome;
+            }
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Unidade");
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var unidade= _context.Unidades.SingleOrDefault(c => c.Id == id);
+
+            if (unidade == null)
+                return HttpNotFound();
+
+            var viewModel = new UnidadeFormViewModel
+            {
+                Unidade = unidade
+            };
+
+            return View("UnidadeForm", viewModel);
+        }
     }
 }

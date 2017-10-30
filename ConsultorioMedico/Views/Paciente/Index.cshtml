@@ -12,14 +12,33 @@ Layout = "~/Views/Shared/_Layout.cshtml";
         {
         <table class="table table-bordered table-hover">
             <thead>
-                <tr><th>Paciente</th></tr>
+                <tr>
+                    <th>Paciente</th>
+                    <th>Ação</th>
+                </tr>
+
             </thead>
             <tbody>
                 @foreach (var paciente in Model)
                 {
-                <tr><td>@Html.ActionLink(@paciente.Nome, "Detalhes", new { paciente.Id })</td></tr>
+                <tr>
+                    <td style="cursor: pointer"  onclick="location.href='@Url.Action("Detalhes", "Paciente" , new { paciente.Id })'">
+                        @paciente.Nome
+                    </td>
+                    <td align="center">
+                        <a href="@Url.Action("Edit", "Paciente" , new { paciente.Id })">
+                            <button class="btn btn-xs btn-block btn-primary">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </button>
+                        </a>
+                    </td>
+                </tr>
                 }
             </tbody>
+
+            <button class="btn btn-block btn-primary btn-sm" onclick="location.href='@Url.Action(" New", "Paciente" )'">
+                <span class="glyphicons glyphicon-plus"></span> New
+            </button>
         </table>
         }
         else

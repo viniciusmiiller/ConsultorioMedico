@@ -250,8 +250,8 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AgendaIndexViewModel.cs" />
     <Compile Include="ViewModels\PacienteFormViewModel.cs" />
-    <Compile Include="ViewModels\ProfissionalIndexViewModel.cs" />
-    <Compile Include="ViewModels\UnidadeIndexViewModel.cs" />
+    <Compile Include="ViewModels\ProfissionalFormViewModel.cs" />
+    <Compile Include="ViewModels\UnidadeFormViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -315,12 +315,12 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Paciente\PacienteForm.cshtml" />
+    <Content Include="Views\Profissional\ProfissionalForm.cshtml" />
+    <Content Include="Views\Unidade\UnidadeForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Agenda\" />
-    <Folder Include="Views\Profissional\" />
-    <Folder Include="Views\Unidade\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

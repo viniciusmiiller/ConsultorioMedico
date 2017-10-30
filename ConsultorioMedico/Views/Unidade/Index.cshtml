@@ -12,14 +12,32 @@ Layout = "~/Views/Shared/_Layout.cshtml";
         {
         <table class="table table-bordered table-hover">
             <thead>
-                <tr><th>Unidades</th></tr>
+                <tr>
+                    <th>Unidades</th>
+                    <th>Ação</th>
+                </tr>
             </thead>
             <tbody>
                 @foreach (var unidade in Model)
                 {
-                <tr><td>@Html.ActionLink(@unidade.Nome, "Detalhes", new { unidade.Id })</td></tr>
+                <tr>
+                    <td style="cursor: pointer" onclick="location.href='@Url.Action("Detalhes", "Unidade" , new { unidade.Id })'">
+                        @unidade.Nome
+                    </td>
+                    <td align="center">
+                        <a href="@Url.Action("Edit", "Unidade" , new { unidade.Id })">
+                            <button class="btn btn-xs btn-block btn-primary">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </button>
+                        </a>
+                    </td>
+                </tr>
                 }
             </tbody>
+
+            <button class="btn btn-block btn-primary btn-sm" onclick="location.href='@Url.Action("New", "Unidade" )'">
+                <span class="glyphicons glyphicon-plus"></span> New
+            </button>
         </table>
         }
         else
