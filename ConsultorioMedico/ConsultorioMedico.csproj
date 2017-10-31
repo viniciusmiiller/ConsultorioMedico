@@ -317,10 +317,10 @@
     <Content Include="Views\Paciente\PacienteForm.cshtml" />
     <Content Include="Views\Profissional\ProfissionalForm.cshtml" />
     <Content Include="Views\Unidade\UnidadeForm.cshtml" />
+    <Content Include="Views\Agenda\AgendaForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Agenda\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
