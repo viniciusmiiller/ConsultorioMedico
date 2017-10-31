@@ -3,7 +3,7 @@ namespace ConsultorioMedico.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialModel : DbMigration
+    public partial class ResetandoDb : DbMigration
     {
         public override void Up()
         {
@@ -14,7 +14,18 @@ namespace ConsultorioMedico.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         DiaSemana = c.String(),
                         Vagas = c.Int(nullable: false),
-                        Profissional = c.String(),
+                        ProfissionalId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Profissionals", t => t.ProfissionalId, cascadeDelete: true)
+                .Index(t => t.ProfissionalId);
+            
+            CreateTable(
+                "dbo.Profissionals",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Nome = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -24,15 +35,7 @@ namespace ConsultorioMedico.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Nome = c.String(),
-                    })
-                .PrimaryKey(t => t.Id);
-            
-            CreateTable(
-                "dbo.Profissionals",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Nome = c.String(),
+                        IsSub = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -121,20 +124,22 @@ namespace ConsultorioMedico.Migrations
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
+            DropForeignKey("dbo.Agenda", "ProfissionalId", "dbo.Profissionals");
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
+            DropIndex("dbo.Agenda", new[] { "ProfissionalId" });
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.Unidades");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
-            DropTable("dbo.Profissionals");
             DropTable("dbo.Pacientes");
+            DropTable("dbo.Profissionals");
             DropTable("dbo.Agenda");
         }
     }

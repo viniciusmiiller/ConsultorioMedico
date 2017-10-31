@@ -1,7 +1,42 @@
-﻿
+﻿@model ConsultorioMedico.ViewModels.AgendaFormViewModel
 @{
-    ViewBag.Title = "AgendaForm";
+    ViewBag.Title = Model.Title;
 }
 
-<h2>AgendaForm</h2>
+<div class="row">
+    <div class="col col-md-6 col-md-offset-3">
+        <h2>@ViewBag.Title</h2>
 
+        @using (Html.BeginForm("Save", "Agenda"))
+        {
+            @Html.ValidationSummary(true, "Please fix the following errors.")
+            <div class="form-group">
+                @Html.LabelFor(m => m.Agenda.DiaSemana)
+                @Html.TextBoxFor(m => m.Agenda.DiaSemana, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Agenda.DiaSemana)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Agenda.ProfissionalId)
+                @Html.DropDownListFor(m => m.Agenda.ProfissionalId, new SelectList(Model.Profissional, "Id", "Nome"), "Selecione o profissional", new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Agenda.ProfissionalId)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Agenda.Vagas)
+                @Html.TextBoxFor(m => m.Agenda.Vagas, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Agenda.Vagas)
+            </div>
+
+            
+
+            @Html.HiddenFor(m => m.Agenda.Id)
+            <button type="submit" class="btn btn-sm btn-primary">Salvar</button>
+        }
+    </div>
+</div>
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}

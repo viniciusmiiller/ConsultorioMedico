@@ -7,13 +7,13 @@ namespace ConsultorioMedico.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class CorrigindoModelAgenda : IMigrationMetadata
+    public sealed partial class AdicionadoRequiredNomePaciente : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(CorrigindoModelAgenda));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AdicionadoRequiredNomePaciente));
         
         string IMigrationMetadata.Id
         {
-            get { return "201710102257460_CorrigindoModelAgenda"; }
+            get { return "201710312327141_AdicionadoRequiredNomePaciente"; }
         }
         
         string IMigrationMetadata.Source

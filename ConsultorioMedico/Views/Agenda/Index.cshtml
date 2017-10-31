@@ -8,6 +8,10 @@ Layout = "~/Views/Shared/_Layout.cshtml";
     <div class="col col-md-6 col-md-offset-3">
         <h2>Agendas</h2>
 
+        <button class="btn btn-block btn-primary btn-sm" onclick="location.href='@Url.Action("New", "Agenda" )'">
+            <span class="glyphicons glyphicon-plus"></span> New
+        </button>
+
         @if (@Model.Count() > 0)
         {
         <table class="table table-bordered table-hover">
@@ -16,15 +20,29 @@ Layout = "~/Views/Shared/_Layout.cshtml";
                     <th>Dia</th>
                     <th>Profissional</th>
                     <th>Vagas</th>
+                    <th>Ação</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var agenda in Model)
                 {
                 <tr>
-                    <td>@Html.ActionLink(@agenda.DiaSemana, "Detalhes", new { agenda.Id })</td>
-                    <td>@Html.ActionLink(@agenda.Profissional.Nome, "Detalhes", new { agenda.Id })</td>
-                    <td>@Html.ActionLink(@agenda.Vagas.ToString(), "Detalhes", new { agenda.Id })</td>
+                    <td style="cursor: pointer" onclick="location.href='@Url.Action("Detalhes", "Agenda" , new { agenda.Id })'">
+                        @agenda.DiaSemana
+                    </td>
+                    <td style="cursor: pointer" onclick="location.href='@Url.Action("Detalhes", "Agenda" , new { agenda.Id })'">
+                        @agenda.Profissional.Nome
+                    </td>
+                    <td style="cursor: pointer" onclick="location.href='@Url.Action("Detalhes", "Agenda" , new { agenda.Id })'">
+                        @agenda.Vagas.ToString()
+                    </td>
+                    <td align="center">
+                        <a href="@Url.Action("Edit", "Agenda" , new { agenda.Id })">
+                            <button class="btn btn-xs btn-block btn-primary">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </button>
+                        </a>
+                    </td>
                 </tr>
                 }
             </tbody>

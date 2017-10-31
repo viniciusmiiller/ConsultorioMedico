@@ -31,19 +31,77 @@ namespace ConsultorioMedico.Controllers
         public ActionResult Index()
         {
             var agenda = _context.Agendas.Include(a => a.Profissional);
+
             return View(agenda);
         }
 
         public ActionResult Detalhes(int id)
         {
-            foreach (var agenda in _context.Agendas.ToList())
+            var agenda = _context.Agendas.Include(c => c.Profissional).SingleOrDefault(c => c.Id == id);
+
+            if (agenda == null)
+                return HttpNotFound();
+
+            return View(agenda);
+        }
+
+
+        public ActionResult New()
+        {
+            var profissionais = _context.Profissionais.ToList();
+
+            var viewModel = new AgendaFormViewModel()
             {
-                if (agenda.Id == id)
+                Agenda = new Agenda(),
+                Profissional = profissionais
+            };
+
+            return View("AgendaForm", viewModel);
+        }
+
+        [HttpPost] // só será acessada com POST
+        public ActionResult Save(Agenda agenda) // recebemos um cliente
+        {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new AgendaFormViewModel
                 {
-                    return View(agenda);
-                }
+                    Agenda = agenda,
+                    Profissional = _context.Profissionais.ToList()
+            };
+
+                return View("AgendaForm", viewModel);
             }
-            return HttpNotFound();
+
+            if (agenda.Id == 0)
+                _context.Agendas.Add(agenda);
+            else
+            {
+                var agendaInDb = _context.Agendas.Single(c => c.Id == agenda.Id);
+
+                agendaInDb.DiaSemana = agenda.DiaSemana;
+                agendaInDb.Vagas = agenda.Vagas;
+                agendaInDb.ProfissionalId = agenda.ProfissionalId;
+            }
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Agenda");
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var agenda = _context.Agendas.SingleOrDefault(c => c.Id == id);
+
+            if (agenda == null)
+                return HttpNotFound();
+
+            var viewModel = new AgendaFormViewModel
+            {
+                Agenda = agenda,
+                Profissional = _context.Profissionais.ToList()
+            };
+
+            return View("AgendaForm", viewModel);
         }
     }
 }
