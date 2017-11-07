@@ -50,6 +50,7 @@ namespace ConsultorioMedico.Controllers
         }
 
         [HttpPost] // só será acessada com POST
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Paciente paciente) // recebemos um cliente
         {
             if (!ModelState.IsValid)

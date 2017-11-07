@@ -9,6 +9,7 @@
 
         @using (Html.BeginForm("Save", "Agenda"))
         {
+            @Html.AntiForgeryToken()
             @Html.ValidationSummary(true, "Please fix the following errors.")
             <div class="form-group">
                 @Html.LabelFor(m => m.Agenda.DiaSemana)
@@ -39,4 +40,12 @@
 @section scripts
 {
     @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $(function () {
+            $.validator.methods.date = function (value, element) {
+                Globalize.culture("pt-BR");
+                return this.optional(element) || Globalize.parseDate(value) !== null;
+            }
+        })
+    </script>
 }

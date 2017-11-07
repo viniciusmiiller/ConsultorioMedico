@@ -10,11 +10,13 @@ namespace ConsultorioMedico.Models
     {
         public int Id { get; set; }
         [Required]
+        [Display(Name = "Dia de semana")]
         public String DiaSemana { get; set; }
         [Required]
         public int Vagas { get; set; }
         public Profissional Profissional { get; set; }
         [Required]
+        [Display(Name = "Profissional")]
         public int ProfissionalId { get; set; }
     }
 }

@@ -16,7 +16,7 @@ namespace ConsultorioMedico.ViewModels
                 if (Unidade != null && Unidade.Id != 0)
                     return "Editar Unidade";
 
-                return "Novo Unidade";
+                return "Nova Unidade";
             }
         }
     }

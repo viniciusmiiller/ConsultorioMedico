@@ -9,6 +9,7 @@
 
         @using (Html.BeginForm("Save", "Paciente"))
         {
+            @Html.AntiForgeryToken()
             @Html.ValidationSummary(true, "Please fix the following errors.")
             <div class="form-group">
                 @Html.LabelFor(m => m.Paciente.Nome)

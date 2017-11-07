@@ -17,7 +17,7 @@ namespace ConsultorioMedico.ViewModels
                 if (Agenda != null && Agenda.Id != 0)
                     return "Editar Agenda";
 
-                return "Novo Agenda";
+                return "Nova Agenda";
             }
         }
     }
