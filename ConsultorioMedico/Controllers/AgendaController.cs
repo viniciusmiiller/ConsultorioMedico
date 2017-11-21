@@ -104,5 +104,19 @@ namespace ConsultorioMedico.Controllers
 
             return View("AgendaForm", viewModel);
         }
+
+        public ActionResult Delete(int id)
+        {
+            var agenda = _context.Agendas.SingleOrDefault(c => c.Id == id);
+
+            if (agenda == null)
+                return HttpNotFound();
+
+            _context.Agendas.Remove(agenda);
+            _context.SaveChanges();
+
+
+            return RedirectToAction("Index");
+        }
     }
 }

@@ -14,7 +14,7 @@ Layout = "~/Views/Shared/_Layout.cshtml";
 
         @if (@Model.Count() > 0)
         {
-        <table class="table table-bordered table-hover">
+        <table id="agenda" class="table table-bordered table-hover">
             <thead>@*  *@
                 <tr>
                     <th>Dia</th>
@@ -38,10 +38,13 @@ Layout = "~/Views/Shared/_Layout.cshtml";
                     </td>
                     <td align="center">
                         <a href="@Url.Action("Edit", "Agenda" , new { agenda.Id })">
-                            <button class="btn btn-xs btn-block btn-primary">
+                            <button class="btn btn-xs btn-primary">
                                 <span class="glyphicon glyphicon-pencil"></span>
                             </button>
                         </a>
+                        <button data-agenda-id="@agenda.Id" class="btn btn-xs btn-primary js-delete">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
                     </td>
                 </tr>
                 }
@@ -54,3 +57,24 @@ Layout = "~/Views/Shared/_Layout.cshtml";
         }
     </div>
 </div>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $("#agenda").on("click",".js-delete", function () {
+                var button = $(this);
+                var result = confirm("Tem certeza que quer remover esta agenda?");
+                if (result==true) {
+                    $.ajax({
+                        url: "/agenda/delete/" + button.attr("data-agenda-id"),
+                        method: "GET",
+                        success: function() {
+                            button.parents("tr").remove();
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+}

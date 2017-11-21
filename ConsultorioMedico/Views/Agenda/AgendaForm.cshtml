@@ -13,7 +13,7 @@
             @Html.ValidationSummary(true, "Please fix the following errors.")
             <div class="form-group">
                 @Html.LabelFor(m => m.Agenda.DiaSemana)
-                @Html.TextBoxFor(m => m.Agenda.DiaSemana, new { @class = "form-control" })
+                @Html.TextBoxFor(m => m.Agenda.DiaSemana, new { @class = "form-control", autofocus = "autofocus" })
                 @Html.ValidationMessageFor(m => m.Agenda.DiaSemana)
             </div>
 
