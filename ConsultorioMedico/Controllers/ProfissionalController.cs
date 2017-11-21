@@ -93,5 +93,23 @@ namespace ConsultorioMedico.Controllers
 
             return View("ProfissionalForm", viewModel);
         }
+
+        public ActionResult Delete(int id)
+        {
+            Console.WriteLine("niceeeeeeeeeeeeeeee: "+ id);
+
+            if (id != null)
+            {
+                var profissional = _context.Profissionais.SingleOrDefault(c => c.Id == id);
+
+                if (profissional == null)
+                    return HttpNotFound();
+
+                _context.Profissionais.Remove(profissional);
+                _context.SaveChanges();
+            }
+
+            return RedirectToAction("Index", "Profissional");
+        }
     }
 }
