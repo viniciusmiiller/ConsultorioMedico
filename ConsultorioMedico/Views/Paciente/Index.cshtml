@@ -14,7 +14,7 @@ Layout = "~/Views/Shared/_Layout.cshtml";
 
         @if (@Model.Count() > 0)
         {
-        <table class="table table-bordered table-hover">
+        <table id="paciente" class="table table-bordered table-hover">
             <thead>
                 <tr>
                     <th>Paciente</th>
@@ -31,10 +31,13 @@ Layout = "~/Views/Shared/_Layout.cshtml";
                     </td>
                     <td align="center">
                         <a href="@Url.Action("Edit", "Paciente" , new { paciente.Id })">
-                            <button class="btn btn-xs btn-block btn-primary">
+                            <button class="btn btn-xs btn-primary">
                                 <span class="glyphicon glyphicon-pencil"></span>
                             </button>
                         </a>
+                        <button data-paciente-id="@paciente.Id" class="btn btn-xs btn-primary js-delete">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
                     </td>
                 </tr>
                 }
@@ -47,3 +50,24 @@ Layout = "~/Views/Shared/_Layout.cshtml";
         }
     </div>
 </div>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $("#paciente").on("click",".js-delete", function () {
+                var button = $(this);
+                var result = confirm("Tem certeza que quer remover este paciente?");
+                if (result==true) {
+                    $.ajax({
+                        url: "/paciente/delete/" + button.attr("data-paciente-id"),
+                        method: "GET",
+                        success: function() {
+                            button.parents("tr").remove();
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+}
