@@ -14,7 +14,7 @@ Layout = "~/Views/Shared/_Layout.cshtml";
 
         @if (@Model.Count() > 0)
         {
-        <table class="table table-bordered table-hover">
+        <table id="unidade" class="table table-bordered table-hover">
             <thead>
                 <tr>
                     <th>Unidades</th>
@@ -30,10 +30,13 @@ Layout = "~/Views/Shared/_Layout.cshtml";
                     </td>
                     <td align="center">
                         <a href="@Url.Action("Edit", "Unidade" , new { unidade.Id })">
-                            <button class="btn btn-xs btn-block btn-primary">
+                            <button class="btn btn-xs btn-primary">
                                 <span class="glyphicon glyphicon-pencil"></span>
                             </button>
                         </a>
+                        <button data-unidade-id="@unidade.Id" class="btn btn-xs btn-primary js-delete">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
                     </td>
                 </tr>
                 }
@@ -46,3 +49,24 @@ Layout = "~/Views/Shared/_Layout.cshtml";
         }
     </div>
 </div>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $("#unidade").on("click",".js-delete", function () {
+                var button = $(this);
+                var result = confirm("Tem certeza que quer remover esta unidade?");
+                if (result==true) {
+                    $.ajax({
+                        url: "/unidade/delete/" + button.attr("data-unidade-id"),
+                        method: "GET",
+                        success: function() {
+                            button.parents("tr").remove();
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+}

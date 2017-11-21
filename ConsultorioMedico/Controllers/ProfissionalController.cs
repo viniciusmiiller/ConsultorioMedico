@@ -96,18 +96,14 @@ namespace ConsultorioMedico.Controllers
 
         public ActionResult Delete(int id)
         {
-            Console.WriteLine("niceeeeeeeeeeeeeeee: "+ id);
+            var profissional = _context.Profissionais.SingleOrDefault(c => c.Id == id);
 
-            if (id != null)
-            {
-                var profissional = _context.Profissionais.SingleOrDefault(c => c.Id == id);
+            if (profissional == null)
+                return HttpNotFound();
 
-                if (profissional == null)
-                    return HttpNotFound();
-
-                _context.Profissionais.Remove(profissional);
-                _context.SaveChanges();
-            }
+            _context.Profissionais.Remove(profissional);
+            _context.SaveChanges();
+            
 
             return RedirectToAction("Index", "Profissional");
         }

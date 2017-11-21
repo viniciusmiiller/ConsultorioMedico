@@ -93,5 +93,19 @@ namespace ConsultorioMedico.Controllers
 
             return View("UnidadeForm", viewModel);
         }
+
+        public ActionResult Delete(int id)
+        {
+            var unidade = _context.Unidades.SingleOrDefault(c => c.Id == id);
+
+            if (unidade == null)
+                return HttpNotFound();
+
+            _context.Unidades.Remove(unidade);
+            _context.SaveChanges();
+
+
+            return RedirectToAction("Index");
+        }
     }
 }
