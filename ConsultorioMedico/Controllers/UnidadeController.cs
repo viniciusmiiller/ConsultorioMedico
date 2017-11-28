@@ -26,7 +26,11 @@ namespace ConsultorioMedico.Controllers
         public ActionResult Index()
         {
             var unidade = _context.Unidades.ToList();
-            return View(unidade);
+
+            if (User.IsInRole("CanManageCustomers"))
+                return View(unidade);
+
+            return View("ReadOnlyIndex", unidade);
         }
 
         public ActionResult Detalhes(int id)
@@ -41,6 +45,7 @@ namespace ConsultorioMedico.Controllers
             return HttpNotFound();
         }
 
+        [Authorize(Roles = "CanManageCustomers")]
         public ActionResult New()
         {
 
@@ -79,6 +84,7 @@ namespace ConsultorioMedico.Controllers
             return RedirectToAction("Index", "Unidade");
         }
 
+        [Authorize(Roles = "CanManageCustomers")]
         public ActionResult Edit(int id)
         {
             var unidade= _context.Unidades.SingleOrDefault(c => c.Id == id);
@@ -94,6 +100,7 @@ namespace ConsultorioMedico.Controllers
             return View("UnidadeForm", viewModel);
         }
 
+        [Authorize(Roles = "CanManageCustomers")]
         public ActionResult Delete(int id)
         {
             var unidade = _context.Unidades.SingleOrDefault(c => c.Id == id);

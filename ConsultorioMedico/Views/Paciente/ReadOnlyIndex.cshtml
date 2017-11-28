@@ -1,0 +1,38 @@
+﻿@model IEnumerable<ConsultorioMedico.Models.Paciente>
+@{
+    ViewBag.Title = "Paciente";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col col-md-6 col-md-offset-3">
+        <h2>Pacientes</h2>
+
+
+        @if (@Model.Count() > 0)
+        {
+            <table id="paciente" class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Paciente</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    @foreach (var paciente in Model)
+                {
+                        <tr>
+                            <td style="cursor: pointer" onclick="location.href='@Url.Action("Detalhes", "Paciente" , new { paciente.Id })'">
+                                @paciente.Nome
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>Não há pacientes cadastrados ainda.</p>
+        }
+    </div>
+</div>

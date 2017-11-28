@@ -26,7 +26,11 @@ namespace ConsultorioMedico.Controllers
         public ActionResult Index()
         {
             var profissional = _context.Profissionais.ToList();
-            return View(profissional);
+
+            if (User.IsInRole("CanManageCustomers"))
+                return View(profissional);
+
+            return View("ReadOnlyIndex", profissional);
         }
 
         public ActionResult Detalhes(int id)
@@ -41,6 +45,7 @@ namespace ConsultorioMedico.Controllers
             return HttpNotFound();
         }
 
+        [Authorize(Roles = "CanManageCustomers")]
         public ActionResult New()
         {
 
@@ -79,6 +84,7 @@ namespace ConsultorioMedico.Controllers
             return RedirectToAction("Index", "Profissional");
         }
 
+        [Authorize(Roles = "CanManageCustomers")]
         public ActionResult Edit(int id)
         {
             var profissional = _context.Profissionais.SingleOrDefault(c => c.Id == id);
@@ -94,6 +100,7 @@ namespace ConsultorioMedico.Controllers
             return View("ProfissionalForm", viewModel);
         }
 
+        [Authorize(Roles = "CanManageCustomers")]
         public ActionResult Delete(int id)
         {
             var profissional = _context.Profissionais.SingleOrDefault(c => c.Id == id);

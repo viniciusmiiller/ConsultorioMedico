@@ -206,6 +206,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711282202402_createUsers.cs" />
+    <Compile Include="Migrations\201711282202402_createUsers.Designer.cs">
+      <DependentUpon>201711282202402_createUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711282232098_createUsers2.cs" />
+    <Compile Include="Migrations\201711282232098_createUsers2.Designer.cs">
+      <DependentUpon>201711282232098_createUsers2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Agenda.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -292,6 +301,10 @@
     <Content Include="Views\Profissional\ProfissionalForm.cshtml" />
     <Content Include="Views\Unidade\UnidadeForm.cshtml" />
     <Content Include="Views\Agenda\AgendaForm.cshtml" />
+    <Content Include="Views\Paciente\ReadOnlyIndex.cshtml" />
+    <Content Include="Views\Agenda\ReadOnlyIndex.cshtml" />
+    <Content Include="Views\Profissional\ReadOnlyIndex.cshtml" />
+    <Content Include="Views\Unidade\ReadOnlyIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -303,6 +316,14 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201711282202402_createUsers.resx">
+      <DependentUpon>201711282202402_createUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711282232098_createUsers2.resx">
+      <DependentUpon>201711282232098_createUsers2.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
