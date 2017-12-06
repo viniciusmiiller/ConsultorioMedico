@@ -5514,7 +5514,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 
 .navbar-default {
     background-color: #9c27b0;
-    border-color: #3e3f3a;
+    background: -webkit-linear-gradient(40deg,#9c27b0,#7873f5) !important;
+    background: linear-gradient(40deg,#9c27b0,#7873f5) !important;
 }
 
     .navbar-default .navbar-brand {
@@ -5532,7 +5533,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     }
 
     .navbar-default .navbar-nav > li > a {
-        color: #d8d8d8;
+        color: #dfd7ca;
     }
 
         .navbar-default .navbar-nav > li > a:hover,

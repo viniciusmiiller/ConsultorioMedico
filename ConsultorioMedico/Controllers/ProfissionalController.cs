@@ -27,7 +27,7 @@ namespace ConsultorioMedico.Controllers
         {
             var profissional = _context.Profissionais.ToList();
 
-            if (User.IsInRole("CanManageCustomers"))
+            if (User.IsInRole("CanManageAdm"))
                 return View(profissional);
 
             return View("ReadOnlyIndex", profissional);
@@ -45,7 +45,7 @@ namespace ConsultorioMedico.Controllers
             return HttpNotFound();
         }
 
-        [Authorize(Roles = "CanManageCustomers")]
+        [Authorize(Roles = "CanManageAdm")]
         public ActionResult New()
         {
 
@@ -84,7 +84,7 @@ namespace ConsultorioMedico.Controllers
             return RedirectToAction("Index", "Profissional");
         }
 
-        [Authorize(Roles = "CanManageCustomers")]
+        [Authorize(Roles = "CanManageAdm")]
         public ActionResult Edit(int id)
         {
             var profissional = _context.Profissionais.SingleOrDefault(c => c.Id == id);
@@ -100,7 +100,7 @@ namespace ConsultorioMedico.Controllers
             return View("ProfissionalForm", viewModel);
         }
 
-        [Authorize(Roles = "CanManageCustomers")]
+        [Authorize(Roles = "CanManageAdm")]
         public ActionResult Delete(int id)
         {
             var profissional = _context.Profissionais.SingleOrDefault(c => c.Id == id);

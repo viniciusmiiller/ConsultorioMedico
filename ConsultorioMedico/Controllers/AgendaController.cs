@@ -32,7 +32,7 @@ namespace ConsultorioMedico.Controllers
         {
             var agenda = _context.Agendas.Include(a => a.Profissional);
 
-            if (User.IsInRole("CanManageCustomers"))
+            if (User.IsInRole("CanManageAdm"))
                 return View(agenda);
 
             return View("ReadOnlyIndex", agenda);
@@ -48,7 +48,7 @@ namespace ConsultorioMedico.Controllers
             return View(agenda);
         }
 
-        [Authorize(Roles = "CanManageCustomers")]
+        [Authorize(Roles = "CanManageAdm")]
         public ActionResult New()
         {
             var profissionais = _context.Profissionais.ToList();
@@ -91,8 +91,8 @@ namespace ConsultorioMedico.Controllers
 
             return RedirectToAction("Index", "Agenda");
         }
-
-        [Authorize(Roles = "CanManageCustomers")]
+        
+        [Authorize(Roles = "CanManageAdm")]
         public ActionResult Edit(int id)
         {
             var agenda = _context.Agendas.SingleOrDefault(c => c.Id == id);
@@ -109,7 +109,7 @@ namespace ConsultorioMedico.Controllers
             return View("AgendaForm", viewModel);
         }
 
-        [Authorize(Roles = "CanManageCustomers")]
+        [Authorize(Roles = "CanManageAdm")]
         public ActionResult Delete(int id)
         {
             var agenda = _context.Agendas.SingleOrDefault(c => c.Id == id);

@@ -26,7 +26,7 @@ namespace ConsultorioMedico.Controllers
         public ActionResult Index()
         {
             var paciente = _context.Pacientes.ToList();
-            if (User.IsInRole("CanManageCustomers"))
+            if (User.IsInRole("CanManageAdm"))
                 return View(paciente);
 
             return View("ReadOnlyIndex", paciente);
@@ -41,7 +41,7 @@ namespace ConsultorioMedico.Controllers
             return View(paciente);
         }
 
-        [Authorize(Roles = "CanManageCustomers")]
+        [Authorize(Roles = "CanManageAdm")]
         public ActionResult New()
         {
 
@@ -81,7 +81,7 @@ namespace ConsultorioMedico.Controllers
             return RedirectToAction("Index", "Paciente");
         }
 
-        [Authorize(Roles = "CanManageCustomers")]
+        [Authorize(Roles = "CanManageAdm")]
         public ActionResult Edit(int id)
         {
             var paciente = _context.Pacientes.SingleOrDefault(c => c.Id == id);
@@ -97,7 +97,7 @@ namespace ConsultorioMedico.Controllers
             return View("PacienteForm", viewModel);
         }
 
-        [Authorize(Roles = "CanManageCustomers")]
+        [Authorize(Roles = "CanManageAdm")]
         public ActionResult Delete(int id)
         {
             var paciente = _context.Pacientes.SingleOrDefault(c => c.Id == id);

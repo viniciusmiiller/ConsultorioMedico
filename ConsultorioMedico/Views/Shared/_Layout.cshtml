@@ -26,6 +26,7 @@
                     <li>@Html.ActionLink("Agenda", "Index", "Agenda")</li>
                     <li>@Html.ActionLink("Unidade", "Index", "Unidade")</li>
                 </ul>
+                @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
@@ -34,7 +35,7 @@
             @RenderBody()
             <hr />
             <footer>
-                <p>&copy; @DateTime.Now.Year - Vinícius Miiller Rebello</p>
+                <p class="text-center">&copy; @DateTime.Now.Year - Vinícius Miiller Rebello</p>
             </footer>
         </div>
     </div>
